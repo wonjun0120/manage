@@ -1,0 +1,4 @@
+import os
+
+SQLALCHEMY_DATABASE_URI = os.environ['CLEARDB_DATABASE_URL']
+
