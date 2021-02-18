@@ -48,9 +48,6 @@
 		<article class="uk-article">
       <a href="{{ url_for('getmajor', id=item.id) }}" class="list-group-item list-group-item-action">
         {{ item.full_name }}
-        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('delMajor', id=item.id) }}' ">
-          삭제
-        </button>
       </a>
 		</article>
 		<hr />
