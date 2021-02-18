@@ -67,7 +67,7 @@ def editMajor(id):
     #     filter(Major.id == id).all()
         
     # return render_template('majorPop.jinja2', major=major, professors=join_prof, students=students, lectures=lectures)
-    return redirect(url_for('editMajor', id = id)) 
+    return redirect(url_for('getmajor', id = id)) 
 
 @app.route("/professor", methods= ['GET', 'POST'])
 def professor():
