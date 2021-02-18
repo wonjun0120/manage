@@ -128,7 +128,7 @@ def editProf(id):
     # majors = Major.query.all()
     # maj = Major.query.get(prof.major)
     # return render_template('professorPop.jinja2', professor=prof, lectures=lectures, majors=majors, major=maj)
-    return redirect(url_for('editProf', id=id)) 
+    return redirect(url_for('getProf', id=id)) 
 
 
 @app.route("/student", methods= ['GET', 'POST'])
