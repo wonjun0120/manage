@@ -8,5 +8,5 @@ app.config.from_object('config')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.environ['SECRET']
 db = SQLAlchemy(app)
-
+db.create_all()
 from app import views, models

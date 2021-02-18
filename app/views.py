@@ -22,8 +22,9 @@ def delMajor(id):
     db.session.delete(maj)
     db.session.commit()
 
-    majors = Major.query.all()
-    return render_template('major.jinja2', major=majors)
+    # majors = Major.query.all()
+    # return render_template('major.jinja2', major=majors)
+    return redirect(url_for('major')) 
 
 @app.route("/getmajor/<id>")
 def getmajor(id):
@@ -52,20 +53,21 @@ def editMajor(id):
         major.full_name = request.form['full_name']
         db.session.commit()
         
-    join_prof = db.session.query(Professor, Major).\
-        filter(Professor.major == Major.id).\
-        filter(Major.id == id).\
-        all()
+    # join_prof = db.session.query(Professor, Major).\
+    #     filter(Professor.major == Major.id).\
+    #     filter(Major.id == id).\
+    #     all()
         
-    students = db.session.query(Student, Major).\
-        filter(Student.major == Major.id).\
-        filter(Major.id == id).all()
+    # students = db.session.query(Student, Major).\
+    #     filter(Student.major == Major.id).\
+    #     filter(Major.id == id).all()
 
-    lectures = db.session.query(Lecture, Major).\
-        filter(Lecture.major == Major.id).\
-        filter(Major.id == id).all()
+    # lectures = db.session.query(Lecture, Major).\
+    #     filter(Lecture.major == Major.id).\
+    #     filter(Major.id == id).all()
         
-    return render_template('majorPop.jinja2', major=major, professors=join_prof, students=students, lectures=lectures)
+    # return render_template('majorPop.jinja2', major=major, professors=join_prof, students=students, lectures=lectures)
+    return redirect(url_for('editMajor', id = id)) 
 
 @app.route("/professor", methods= ['GET', 'POST'])
 def professor():
@@ -89,11 +91,12 @@ def delProf(id):
     db.session.delete(prof)
     db.session.commit()
 
-    join_prof = db.session.query(Professor, Major).\
-        filter(Professor.major == Major.id).all()
+    # join_prof = db.session.query(Professor, Major).\
+    #     filter(Professor.major == Major.id).all()
 
-    majors = Major.query.all()
-    return render_template('professor.jinja2', majors=majors, professors=join_prof)
+    # majors = Major.query.all()
+    # return render_template('professor.jinja2', majors=majors, professors=join_prof)
+    return redirect(url_for('professor')) 
 
 @app.route("/getProf/<id>")
 def getProf(id):
@@ -118,13 +121,14 @@ def editProf(id):
         prof.major = maj.id
         db.session.commit()
         
-    professor = Professor.query.get(id)
-    lectures = db.session.query(Lecture, Professor).\
-        filter(Lecture.professor == Professor.id).\
-        filter(Professor.id == id).all()
-    majors = Major.query.all()
-    maj = Major.query.get(prof.major)
-    return render_template('professorPop.jinja2', professor=prof, lectures=lectures, majors=majors, major=maj)
+    # professor = Professor.query.get(id)
+    # lectures = db.session.query(Lecture, Professor).\
+    #     filter(Lecture.professor == Professor.id).\
+    #     filter(Professor.id == id).all()
+    # majors = Major.query.all()
+    # maj = Major.query.get(prof.major)
+    # return render_template('professorPop.jinja2', professor=prof, lectures=lectures, majors=majors, major=maj)
+    return redirect(url_for('editProf', id=id)) 
 
 
 @app.route("/student", methods= ['GET', 'POST'])
@@ -155,11 +159,13 @@ def delStud(id):
     db.session.delete(stud)
     db.session.commit()
 
-    students = db.session.query(Student, Major).\
-        filter(Student.major == Major.id).all()
+    # students = db.session.query(Student, Major).\
+    #     filter(Student.major == Major.id).all()
 
-    majors = Major.query.all()
-    return render_template('student.jinja2', majors=majors, students=students)
+    # majors = Major.query.all()
+    # return render_template('student.jinja2', majors=majors, students=students)
+    return redirect(url_for('student')) 
+
 
 
 @app.route("/getStud/<id>")
